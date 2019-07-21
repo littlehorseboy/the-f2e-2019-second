@@ -35,10 +35,10 @@ export default function Main(): JSX.Element {
 
   useEffect((): void => {
     // 牌組題目還需要擴充
-    const first = playCards.slice(0, 7).reverse();
+    const first = playCards.slice(21, 28).reverse();
     const second = playCards.slice(7, 14).reverse();
     const third = playCards.slice(14, 21).reverse();
-    const fourth = playCards.slice(21, 28).reverse();
+    const fourth = playCards.slice(0, 7).reverse();
     const fifth = playCards.slice(28, 34).reverse();
     const sixth = playCards.slice(34, 40).reverse();
     const seventh = playCards.slice(40, 46).reverse();

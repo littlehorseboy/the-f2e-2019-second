@@ -37,12 +37,25 @@ export default function Card(props: Props): JSX.Element {
 
   const card = props.cascadeField.find((cascade): PlayCard => cascade);
 
+  let cascadeField: PlayCard[] = [];
+
+  if (card) {
+    cascadeField = props.cascadeField.filter(
+      (cascade): boolean => !(cascade.suits === card.suits && cascade.number === card.number),
+    );
+
+    if (card.number === 1 && card.suits === 'diamond') {
+      // debugger;
+    }
+  }
+
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: 'card',
       card,
       cascadeFieldName: props.cascadeFieldName,
     },
+    // canDrag: card && cascadeField[0] && cascadeField[0].number + 1 === card.number,
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),
@@ -51,10 +64,6 @@ export default function Card(props: Props): JSX.Element {
   if (!card) {
     return <></>;
   }
-
-  const cascadeField = props.cascadeField.filter(
-    (cascade): boolean => !(cascade.suits === card.suits && cascade.number === card.number),
-  );
 
   return (
     <div ref={drag} className={classNames(
