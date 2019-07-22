@@ -14,9 +14,6 @@ const useStyles = makeStyles({
     width: 1280,
     margin: 8,
     display: 'flex',
-    '& > div': {
-      flexGrow: 1,
-    },
   },
 });
 
@@ -35,14 +32,38 @@ export default function Main(): JSX.Element {
 
   useEffect((): void => {
     // 牌組題目還需要擴充
-    const first = playCards.slice(21, 28).reverse();
-    const second = playCards.slice(7, 14).reverse();
-    const third = playCards.slice(14, 21).reverse();
-    const fourth = playCards.slice(0, 7).reverse();
-    const fifth = playCards.slice(28, 34).reverse();
-    const sixth = playCards.slice(34, 40).reverse();
-    const seventh = playCards.slice(40, 46).reverse();
-    const eighth = playCards.slice(46, 52).reverse();
+    const first = [
+      { suits: 'heart', number: 7 },
+      { suits: 'spade', number: 6 },
+      { suits: 'spade', number: 5 },
+      { suits: 'heart', number: 4 },
+      { suits: 'spade', number: 3 },
+      { suits: 'heart', number: 2 },
+      { suits: 'spade', number: 1 },
+    ];
+    const second = [
+      { suits: 'heart', number: 7 },
+      { suits: 'heart', number: 6 },
+      { suits: 'heart', number: 5 },
+      { suits: 'heart', number: 4 },
+      { suits: 'spade', number: 3 },
+      { suits: 'heart', number: 2 },
+      { suits: 'spade', number: 1 },
+    ];
+    const third = [
+      { suits: 'heart', number: 7 },
+      { suits: 'heart', number: 6 },
+      { suits: 'heart', number: 5 },
+      { suits: 'spade', number: 4 },
+      { suits: 'heart', number: 3 },
+      { suits: 'spade', number: 2 },
+      { suits: 'heart', number: 1 },
+    ];
+    const fourth = playCards.slice(0, 0);
+    const fifth = playCards.slice(0, 0);
+    const sixth = playCards.slice(0, 0);
+    const seventh = playCards.slice(0, 0);
+    const eighth = playCards.slice(0, 0);
 
     dispatch(fillCardCascades({
       first,
@@ -60,7 +81,11 @@ export default function Main(): JSX.Element {
     <div className={classes.root}>
       <div className={classes.cardCascadeZone}>
         {Object.keys(freeCell.cardCascades).map((key): JSX.Element => (
-          <CardWall key={key} cascadeFieldName={key}>
+          <CardWall
+            key={key}
+            cascadeFieldName={key}
+            cascadeField={(freeCell.cardCascades[key] as PlayCard[])}
+          >
             <Card
               cascadeField={freeCell.cardCascades[key] as PlayCard[]}
               cascadeFieldName={key}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDrag, DragObjectWithType } from 'react-dnd';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,25 +7,25 @@ import { PlayCard } from '../../../reducers/playCards/playCards';
 const useStyles = makeStyles({
   root: {
     height: '100%',
-    border: '1px solid blue',
+    minHeight: 180,
+    // border: '1px solid blue',
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,
     },
-    '&.empty': {
-      backgroundColor: '#C9C9C9',
-      '& > *': {
-        display: 'none',
-      },
-    },
   },
 });
+
+const suitsCheck = (first: string, second: string): boolean => {
+  if (first === 'spade' || first === 'club') {
+    return second !== 'spade' && second !== 'club';
+  }
+  return second !== 'heart' && second !== 'diamond';
+};
 
 interface Props {
   cascadeField: PlayCard[];
   cascadeFieldName: string;
-  empty?: boolean;
-  setCanDrags?: React.Dispatch<React.SetStateAction<boolean>>[];
 }
 
 export interface DragItemI extends DragObjectWithType {
@@ -35,12 +35,6 @@ export interface DragItemI extends DragObjectWithType {
 
 export default function Card(props: Props): JSX.Element {
   const classes = useStyles();
-
-  const [canDrag, setCanDrag] = useState(true);
-
-  const setCanDrags = props.setCanDrags
-    ? [...props.setCanDrags, setCanDrag]
-    : [setCanDrag];
 
   const card = props.cascadeField.find((cascade): PlayCard => cascade);
 
@@ -58,7 +52,17 @@ export default function Card(props: Props): JSX.Element {
       card,
       cascadeFieldName: props.cascadeFieldName,
     },
-    // canDrag: card && cascadeField[0] && cascadeField[0].number + 1 === card.number,
+    canDrag: props.cascadeField.every((cascade, index): boolean => (
+      // 比數字
+      props.cascadeField[index + 1]
+        ? cascade.number - 1 === props.cascadeField[index + 1].number
+        : true
+    ) && (
+      // 比花色
+      props.cascadeField[index + 1]
+        ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
+        : true
+    )),
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),
@@ -72,14 +76,12 @@ export default function Card(props: Props): JSX.Element {
     <div ref={drag} className={classNames(
       classes.root,
       { isDragging },
-      { empty: props.empty },
     )}>
       {`${card.suits}${card.number}`}
 
       {cascadeField.length > 0 && <Card
         cascadeField={cascadeField}
         cascadeFieldName={props.cascadeFieldName}
-        setCanDrags={setCanDrags}
       />}
     </div>
   );
