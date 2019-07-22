@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDrag, DragObjectWithType } from 'react-dnd';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,6 +25,7 @@ interface Props {
   cascadeField: PlayCard[];
   cascadeFieldName: string;
   empty?: boolean;
+  setCanDrags?: React.Dispatch<React.SetStateAction<boolean>>[];
 }
 
 export interface DragItemI extends DragObjectWithType {
@@ -35,6 +36,12 @@ export interface DragItemI extends DragObjectWithType {
 export default function Card(props: Props): JSX.Element {
   const classes = useStyles();
 
+  const [canDrag, setCanDrag] = useState(true);
+
+  const setCanDrags = props.setCanDrags
+    ? [...props.setCanDrags, setCanDrag]
+    : [setCanDrag];
+
   const card = props.cascadeField.find((cascade): PlayCard => cascade);
 
   let cascadeField: PlayCard[] = [];
@@ -43,10 +50,6 @@ export default function Card(props: Props): JSX.Element {
     cascadeField = props.cascadeField.filter(
       (cascade): boolean => !(cascade.suits === card.suits && cascade.number === card.number),
     );
-
-    if (card.number === 1 && card.suits === 'diamond') {
-      // debugger;
-    }
   }
 
   const [{ isDragging }, drag] = useDrag({
@@ -76,6 +79,7 @@ export default function Card(props: Props): JSX.Element {
       {cascadeField.length > 0 && <Card
         cascadeField={cascadeField}
         cascadeFieldName={props.cascadeFieldName}
+        setCanDrags={setCanDrags}
       />}
     </div>
   );
