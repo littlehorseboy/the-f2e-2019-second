@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 210">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #d52a29;
+      }
+
+      .cls-3 {
+        font-size: 14px;
+        font-family: HelveticaNeue-Bold, Helvetica Neue;
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        filter: url(#Rectangle_1);
+      }
+    </style>
+    <filter id="Rectangle_1" x="0" y="0" width="160" height="210" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_170" data-name="Group 170" transform="translate(-26 -476)">
+    <g id="Group_159" data-name="Group 159" transform="translate(-87 259)">
+      <g id="Symbol_5_257" data-name="Symbol 5 – 257">
+        <g class="cls-4" transform="matrix(1, 0, 0, 1, 113, 217)">
+          <rect id="Rectangle_1-2" data-name="Rectangle 1" class="cls-1" width="100" height="150" rx="5" transform="translate(27 27)"/>
+        </g>
+      </g>
+      <g id="Group_1" data-name="Group 1" transform="translate(0 -3)">
+        <path id="Union_5" data-name="Union 5" class="cls-2" d="M5.779,9.252a2.825,2.825,0,0,1-2.765,2.529A2.9,2.9,0,0,1,.006,8.89a4.824,4.824,0,0,1,.329-2.2,6.982,6.982,0,0,1,1.122-1.9c.362-.408.831-.984,1.322-1.528C3.571,2.382,5.664,0,5.791,0h0a.005.005,0,0,1,0,.005c.125.14,2.193,2.459,2.992,3.346.491.545.96,1.12,1.322,1.528a6.985,6.985,0,0,1,1.122,1.9,4.824,4.824,0,0,1,.329,2.2,2.9,2.9,0,0,1-3.007,2.891A2.829,2.829,0,0,1,5.779,9.252Z" transform="translate(156.568 278.872) rotate(180)"/>
+        <text id="A" class="cls-3" transform="translate(146 263)"><tspan x="0" y="0">A</tspan></text>
+      </g>
+      <g id="Group_2" data-name="Group 2" transform="translate(379.568 640.872) rotate(180)">
+        <g id="Symbol_1_145" data-name="Symbol 1 – 145" transform="translate(-235.479 -95.719)">
+          <path id="Union_5-2" data-name="Union 5" class="cls-2" d="M5.779,9.252a2.825,2.825,0,0,1-2.765,2.529A2.9,2.9,0,0,1,.006,8.89a4.824,4.824,0,0,1,.329-2.2,6.982,6.982,0,0,1,1.122-1.9c.362-.408.831-.984,1.322-1.528C3.571,2.382,5.664,0,5.791,0h0a.005.005,0,0,1,0,.005c.125.14,2.193,2.459,2.992,3.346.491.545.96,1.12,1.322,1.528a6.985,6.985,0,0,1,1.122,1.9,4.824,4.824,0,0,1,.329,2.2,2.9,2.9,0,0,1-3.007,2.891A2.829,2.829,0,0,1,5.779,9.252Z" transform="translate(392.047 374.591) rotate(180)"/>
+        </g>
+        <text id="A-2" data-name="A" class="cls-3" transform="translate(146 263)"><tspan x="0" y="0">A</tspan></text>
+      </g>
+    </g>
+    <path id="Union_8" data-name="Union 8" class="cls-2" d="M36.509,58.447A17.846,17.846,0,0,1,19.041,74.421c-9.723,0-18.522-6.445-19-18.261,0-2.453-.517-8.376,2.077-13.882C3,40.406,5,35,9.206,30.257c2.287-2.579,5.25-6.215,8.351-9.654C22.563,15.05,35.784,0,36.581.007c0,0,0-.007,0-.007l.007.008a.034.034,0,0,1,.03.034c.787.882,13.853,15.536,18.9,21.139,3.1,3.44,6.064,7.075,8.351,9.655,4.208,4.743,6.207,10.149,7.089,12.021,2.593,5.506,2.075,11.429,2.075,13.883C72.561,68.554,63.761,75,54.039,75,44.87,75,37.339,67.731,36.509,58.447Z" transform="translate(139.08 616) rotate(180)"/>
+  </g>
+</svg>
