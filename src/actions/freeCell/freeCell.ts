@@ -41,4 +41,77 @@ export const changeCascadeFieldName = (
   },
 });
 
-export type FreeCellActionTypes = FillCardCascadesActionI | ChangeCascadeFieldNameActionI;
+export const CHANGEEMPTYCELLNAME = 'CHANGEEMPTYCELLNAME';
+
+interface ChangeEmptyCellNameActionI {
+  type: typeof CHANGEEMPTYCELLNAME;
+  payload: {
+    card: PlayCard;
+    currentEmptyCellName: string;
+    targetEmptyCellName: string;
+  };
+}
+
+export const changeEmptyCellName = (
+  card: PlayCard,
+  currentEmptyCellName: string,
+  targetEmptyCellName: string,
+): ChangeEmptyCellNameActionI => ({
+  type: CHANGEEMPTYCELLNAME,
+  payload: {
+    card,
+    currentEmptyCellName,
+    targetEmptyCellName,
+  },
+});
+
+export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
+
+interface CascadeToEmptyCellActionI {
+  type: typeof CASCADETOEMPTYCELL;
+  payload: {
+    card: PlayCard;
+    currentCascadeFieldName: string;
+    targetEmptyCellName: string;
+  };
+}
+
+export const cascadeToEmptyCell = (
+  card: PlayCard,
+  currentCascadeFieldName: string,
+  targetEmptyCellName: string,
+): CascadeToEmptyCellActionI => ({
+  type: CASCADETOEMPTYCELL,
+  payload: {
+    card,
+    currentCascadeFieldName,
+    targetEmptyCellName,
+  },
+});
+
+export const EMPTYCELLTOCASCADE = 'EMPTYCELLTOCASCADE';
+
+interface EmptyCellToCascadeActionI {
+  type: typeof EMPTYCELLTOCASCADE;
+  payload: {
+    card: PlayCard;
+    currentEmptyCellName: string;
+    targetCascadeFieldName: string;
+  };
+}
+
+export const emptyCellToCascade = (
+  card: PlayCard,
+  currentEmptyCellName: string,
+  targetCascadeFieldName: string,
+): EmptyCellToCascadeActionI => ({
+  type: EMPTYCELLTOCASCADE,
+  payload: {
+    card,
+    currentEmptyCellName,
+    targetCascadeFieldName,
+  },
+});
+
+export type FreeCellActionTypes = FillCardCascadesActionI | ChangeCascadeFieldNameActionI
+| ChangeEmptyCellNameActionI | CascadeToEmptyCellActionI | EmptyCellToCascadeActionI;

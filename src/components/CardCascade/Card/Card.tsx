@@ -24,13 +24,15 @@ const suitsCheck = (first: string, second: string): boolean => {
 };
 
 interface Props {
-  cascadeField: PlayCard[];
   cascadeFieldName: string;
+  cascadeField: PlayCard[];
 }
 
 export interface DragItemI extends DragObjectWithType {
   card: PlayCard;
-  cascadeFieldName: string;
+  cascadeFieldName?: string;
+  emptyCellName?: string;
+  foundationName?: string;
 }
 
 export default function Card(props: Props): JSX.Element {

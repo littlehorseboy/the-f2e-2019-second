@@ -1,5 +1,14 @@
 import { PlayCard } from '../playCards/playCards';
-import { FILLCARDCASCADES, FreeCellActionTypes, CHANGECASCADEFIELDNAME } from '../../actions/freeCell/freeCell';
+import {
+  FILLCARDCASCADES,
+  FreeCellActionTypes,
+  CHANGECASCADEFIELDNAME,
+  CASCADETOEMPTYCELL,
+  EMPTYCELLTOCASCADE,
+  CHANGEEMPTYCELLNAME,
+} from '../../actions/freeCell/freeCell';
+
+/* eslint max-len: ["error", { "code": 150 }] */
 
 export interface CardCascadesI {
   first: null[] | PlayCard[];
@@ -19,6 +28,7 @@ export interface FreeCell {
     second: null[] | PlayCard[];
     third: null[] | PlayCard[];
     fourth: null[] | PlayCard[];
+    [propName: string]: null[] | PlayCard[];
   };
   cardCascades: CardCascadesI;
   foundations: {
@@ -26,6 +36,7 @@ export interface FreeCell {
     second: null[] | PlayCard[];
     third: null[] | PlayCard[];
     fourth: null[] | PlayCard[];
+    [propName: string]: null[] | PlayCard[];
   };
 }
 
@@ -103,6 +114,47 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
             action.payload.currentCascadeFieldName,
             action.payload.targetCascadeFieldName,
           ),
+        },
+        foundations: state.foundations,
+      };
+    case CHANGEEMPTYCELLNAME:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+          [action.payload.targetEmptyCellName]: [action.payload.card],
+        },
+        cardCascades: state.cardCascades,
+        foundations: state.foundations,
+      };
+    case CASCADETOEMPTYCELL:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.targetEmptyCellName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
+            .filter((cardCascade): boolean => cardCascade.suits === action.payload.card.suits
+              && cardCascade.number === action.payload.card.number),
+        },
+        cardCascades: {
+          ...state.cardCascades,
+          [action.payload.currentCascadeFieldName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
+            .filter((cardCascade): boolean => !(cardCascade.suits === action.payload.card.suits
+              && cardCascade.number === action.payload.card.number)),
+        },
+        foundations: state.foundations,
+      };
+    case EMPTYCELLTOCASCADE:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+        },
+        cardCascades: {
+          ...state.cardCascades,
+          [action.payload.targetCascadeFieldName]: [
+            ...(state.cardCascades[action.payload.targetCascadeFieldName] as PlayCard[]),
+            action.payload.card,
+          ],
         },
         foundations: state.foundations,
       };

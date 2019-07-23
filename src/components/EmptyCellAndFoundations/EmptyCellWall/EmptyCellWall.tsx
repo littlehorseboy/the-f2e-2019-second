@@ -2,9 +2,10 @@ import React, { ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeStyles } from '@material-ui/core/styles';
-import { DragItemI } from '../Card/Card';
-import { changeCascadeFieldName, emptyCellToCascade } from '../../../actions/freeCell/freeCell';
+import { DragItemI } from '../../CardCascade/Card/Card';
+import { cascadeToEmptyCell, changeEmptyCellName } from '../../../actions/freeCell/freeCell';
 import { PlayCard } from '../../../reducers/playCards/playCards';
+import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
 const useStyles = makeStyles({
   root: {
@@ -30,31 +31,38 @@ const suitsCheck = (first: string, second: string): boolean => {
 };
 
 interface Props {
-  cascadeFieldName: string;
-  cascadeField: PlayCard[];
+  emptyCellName: string;
+  emptyCellCards: PlayCard[];
+  freeCell: FreeCell;
   children: ReactNode;
 }
 
-export default function CardWall(props: Props): JSX.Element {
+export default function EmptyCell(props: Props): JSX.Element {
   const classes = useStyles();
 
   const dispatch = useDispatch();
 
-  const [lastCard] = props.cascadeField.slice(-1);
+  const [lastCard] = props.emptyCellCards.slice(-1);
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'card',
     drop: (item: DragItemI): void | undefined => {
       if (item.cascadeFieldName) {
-        dispatch(changeCascadeFieldName(item.card, item.cascadeFieldName, props.cascadeFieldName));
+        dispatch(cascadeToEmptyCell(item.card, item.cascadeFieldName, props.emptyCellName));
       }
       if (item.emptyCellName) {
-        dispatch(emptyCellToCascade(item.card, item.emptyCellName, props.cascadeFieldName));
+        dispatch(changeEmptyCellName(item.card, item.emptyCellName, props.emptyCellName));
       }
     },
-    canDrop: (item: DragItemI): boolean => item.cascadeFieldName !== props.cascadeFieldName
-      && (!lastCard ? true : item.card.number + 1 === lastCard.number
-      && suitsCheck(item.card.suits, lastCard.suits)),
+    canDrop: (item: DragItemI): boolean => !lastCard
+      && (item.emptyCellName || Object.keys(props.freeCell.cardCascades).some((key): boolean => {
+        const [lastCascadeCard] = props.freeCell.cardCascades[key].slice(-1);
+        if (!lastCascadeCard) {
+          return false;
+        }
+        return lastCascadeCard.suits === item.card.suits
+          && lastCascadeCard.number === item.card.number;
+      })),
     collect: (monitor): { isOver: boolean; canDrop: boolean } => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
