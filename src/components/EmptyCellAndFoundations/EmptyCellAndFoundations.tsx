@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import EmptyCellWall from './EmptyCellWall/EmptyCellWall';
 import EmptyCellCard from './EmptyCellCard/EmptyCellCard';
+import FoundationsCardWall from './FoundationsCardWall/FoundationsCardWall';
+import FoundationsCard from './FoundationsCard/FoundationsCard';
 import { PlayCard } from '../../reducers/playCards/playCards';
 import { FreeCell } from '../../reducers/freeCell/freeCell';
 
@@ -41,18 +43,17 @@ export default function EmptyCellAndFoundations(): JSX.Element {
       <div className={classes.divider}></div>
 
       {Object.keys(freeCell.foundations).map((key): JSX.Element => (
-        <EmptyCellWall
+        <FoundationsCardWall
           key={key}
-          emptyCellName={key}
-          emptyCellCards={freeCell.emptyCell[key] as PlayCard[]}
+          foundationName={key}
+          foundationCards={freeCell.foundations[key] as PlayCard[]}
           freeCell={freeCell}
         >
-          <EmptyCellCard
-            emptyCellName={key}
-            emptyCellCards={freeCell.emptyCell[key] as PlayCard[]}
-            // freeCell={freeCell}
+          <FoundationsCard
+            foundationName={key}
+            foundationCards={freeCell.foundations[key] as PlayCard[]}
           />
-        </EmptyCellWall>
+        </FoundationsCardWall>
       ))}
     </div>
   );

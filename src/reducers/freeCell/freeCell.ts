@@ -3,9 +3,12 @@ import {
   FILLCARDCASCADES,
   FreeCellActionTypes,
   CHANGECASCADEFIELDNAME,
-  CASCADETOEMPTYCELL,
   EMPTYCELLTOCASCADE,
   CHANGEEMPTYCELLNAME,
+  CASCADETOEMPTYCELL,
+  CHANGEFOUNDATION,
+  CASCADETOFOUNDATIONS,
+  EMPTYCELLTOFOUNDATIONS,
 } from '../../actions/freeCell/freeCell';
 
 /* eslint max-len: ["error", { "code": 150 }] */
@@ -117,6 +120,31 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
+    case EMPTYCELLTOCASCADE:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+        },
+        cardCascades: {
+          ...state.cardCascades,
+          [action.payload.targetCascadeFieldName]: [
+            ...(state.cardCascades[action.payload.targetCascadeFieldName] as PlayCard[]),
+            action.payload.card,
+          ],
+        },
+        foundations: state.foundations,
+      };
+    case CHANGEEMPTYCELLNAME:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+          [action.payload.targetEmptyCellName]: [action.payload.card],
+        },
+        cardCascades: state.cardCascades,
+        foundations: state.foundations,
+      };
     case CASCADETOEMPTYCELL:
       return {
         emptyCell: {
@@ -133,30 +161,45 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
-    case CHANGEEMPTYCELLNAME:
+    case CHANGEFOUNDATION:
       return {
-        emptyCell: {
-          ...state.emptyCell,
-          [action.payload.currentEmptyCellName]: [],
-          [action.payload.targetEmptyCellName]: [action.payload.card],
-        },
+        emptyCell: state.emptyCell,
         cardCascades: state.cardCascades,
-        foundations: state.foundations,
-      };
-    case EMPTYCELLTOCASCADE:
-      return {
-        emptyCell: {
-          ...state.emptyCell,
-          [action.payload.currentEmptyCellName]: [],
+        foundations: {
+          ...state.foundations,
+          [action.payload.currentFoundation]: [],
+          [action.payload.targetFoundation]: [action.payload.card],
         },
+      };
+    case CASCADETOFOUNDATIONS:
+      return {
+        emptyCell: state.emptyCell,
         cardCascades: {
           ...state.cardCascades,
-          [action.payload.targetCascadeFieldName]: [
-            ...(state.cardCascades[action.payload.targetCascadeFieldName] as PlayCard[]),
-            action.payload.card,
-          ],
+          [action.payload.currentCascadeFieldName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
+            .filter((cardCascade): boolean => !(cardCascade.suits === action.payload.card.suits
+              && cardCascade.number === action.payload.card.number)),
         },
-        foundations: state.foundations,
+        foundations: {
+          ...state.foundations,
+          [action.payload.targetFoundationName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
+            .filter((cardCascade): boolean => cardCascade.suits === action.payload.card.suits
+              && cardCascade.number === action.payload.card.number),
+        },
+      };
+    case EMPTYCELLTOFOUNDATIONS:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+        },
+        cardCascades: state.cardCascades,
+        foundations: {
+          ...state.foundations,
+          [action.payload.targetFoundationName]: (state.emptyCell[action.payload.currentEmptyCellName] as PlayCard[])
+            .filter((card): boolean => card.suits === action.payload.card.suits
+              && card.number === action.payload.card.number),
+        },
       };
     default:
       return state;

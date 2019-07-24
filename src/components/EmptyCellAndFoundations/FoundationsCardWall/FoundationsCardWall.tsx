@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeStyles } from '@material-ui/core/styles';
 import { DragItemI } from '../../CardCascade/Card/Card';
-import { cascadeToEmptyCell, changeEmptyCellName } from '../../../actions/freeCell/freeCell';
+import { changeFoundation, cascadeToFoundations, emptyCellToFoundations } from '../../../actions/freeCell/freeCell';
 import { PlayCard } from '../../../reducers/playCards/playCards';
 import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
@@ -31,27 +31,30 @@ const suitsCheck = (first: string, second: string): boolean => {
 };
 
 interface Props {
-  emptyCellName: string;
-  emptyCellCards: PlayCard[];
+  foundationName: string;
+  foundationCards: PlayCard[];
   freeCell: FreeCell;
   children: ReactNode;
 }
 
-export default function EmptyCellWall(props: Props): JSX.Element {
+export default function FoundationsCardWall(props: Props): JSX.Element {
   const classes = useStyles();
 
   const dispatch = useDispatch();
 
-  const [lastCard] = props.emptyCellCards.slice(-1);
+  const [lastCard] = props.foundationCards.slice(-1);
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'card',
     drop: (item: DragItemI): void | undefined => {
       if (item.cascadeFieldName) {
-        dispatch(cascadeToEmptyCell(item.card, item.cascadeFieldName, props.emptyCellName));
+        dispatch(cascadeToFoundations(item.card, item.cascadeFieldName, props.foundationName));
       }
       if (item.emptyCellName) {
-        dispatch(changeEmptyCellName(item.card, item.emptyCellName, props.emptyCellName));
+        dispatch(emptyCellToFoundations(item.card, item.emptyCellName, props.foundationName));
+      }
+      if (item.foundationName) {
+        dispatch(changeFoundation(item.card, item.foundationName, props.foundationName));
       }
     },
     canDrop: (item: DragItemI): boolean => !lastCard
