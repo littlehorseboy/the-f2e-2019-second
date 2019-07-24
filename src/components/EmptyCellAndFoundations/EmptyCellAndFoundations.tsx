@@ -40,7 +40,7 @@ export default function EmptyCellAndFoundations(): JSX.Element {
 
       <div className={classes.divider}></div>
 
-      {Object.keys(freeCell.emptyCell).map((key): JSX.Element => (
+      {Object.keys(freeCell.foundations).map((key): JSX.Element => (
         <EmptyCellWall
           key={key}
           emptyCellName={key}

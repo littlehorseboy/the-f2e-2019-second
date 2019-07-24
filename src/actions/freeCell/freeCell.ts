@@ -2,6 +2,10 @@ import { PlayCard } from '../../reducers/playCards/playCards';
 import { CardCascadesI } from '../../reducers/freeCell/freeCell';
 
 export const FILLCARDCASCADES = 'FILLCARDCASCADES';
+export const CHANGECASCADEFIELDNAME = 'CHANGECASCADEFIELDNAME';
+export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
+export const CHANGEEMPTYCELLNAME = 'CHANGEEMPTYCELLNAME';
+export const EMPTYCELLTOCASCADE = 'EMPTYCELLTOCASCADE';
 
 interface FillCardCascadesActionI {
   type: typeof FILLCARDCASCADES;
@@ -16,8 +20,6 @@ export const fillCardCascades = (cardCascades: CardCascadesI): FillCardCascadesA
     cardCascades,
   },
 });
-
-export const CHANGECASCADEFIELDNAME = 'CHANGECASCADEFIELDNAME';
 
 interface ChangeCascadeFieldNameActionI {
   type: typeof CHANGECASCADEFIELDNAME;
@@ -41,32 +43,6 @@ export const changeCascadeFieldName = (
   },
 });
 
-export const CHANGEEMPTYCELLNAME = 'CHANGEEMPTYCELLNAME';
-
-interface ChangeEmptyCellNameActionI {
-  type: typeof CHANGEEMPTYCELLNAME;
-  payload: {
-    card: PlayCard;
-    currentEmptyCellName: string;
-    targetEmptyCellName: string;
-  };
-}
-
-export const changeEmptyCellName = (
-  card: PlayCard,
-  currentEmptyCellName: string,
-  targetEmptyCellName: string,
-): ChangeEmptyCellNameActionI => ({
-  type: CHANGEEMPTYCELLNAME,
-  payload: {
-    card,
-    currentEmptyCellName,
-    targetEmptyCellName,
-  },
-});
-
-export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
-
 interface CascadeToEmptyCellActionI {
   type: typeof CASCADETOEMPTYCELL;
   payload: {
@@ -89,7 +65,27 @@ export const cascadeToEmptyCell = (
   },
 });
 
-export const EMPTYCELLTOCASCADE = 'EMPTYCELLTOCASCADE';
+interface ChangeEmptyCellNameActionI {
+  type: typeof CHANGEEMPTYCELLNAME;
+  payload: {
+    card: PlayCard;
+    currentEmptyCellName: string;
+    targetEmptyCellName: string;
+  };
+}
+
+export const changeEmptyCellName = (
+  card: PlayCard,
+  currentEmptyCellName: string,
+  targetEmptyCellName: string,
+): ChangeEmptyCellNameActionI => ({
+  type: CHANGEEMPTYCELLNAME,
+  payload: {
+    card,
+    currentEmptyCellName,
+    targetEmptyCellName,
+  },
+});
 
 interface EmptyCellToCascadeActionI {
   type: typeof EMPTYCELLTOCASCADE;

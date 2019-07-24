@@ -117,16 +117,6 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
-    case CHANGEEMPTYCELLNAME:
-      return {
-        emptyCell: {
-          ...state.emptyCell,
-          [action.payload.currentEmptyCellName]: [],
-          [action.payload.targetEmptyCellName]: [action.payload.card],
-        },
-        cardCascades: state.cardCascades,
-        foundations: state.foundations,
-      };
     case CASCADETOEMPTYCELL:
       return {
         emptyCell: {
@@ -141,6 +131,16 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
             .filter((cardCascade): boolean => !(cardCascade.suits === action.payload.card.suits
               && cardCascade.number === action.payload.card.number)),
         },
+        foundations: state.foundations,
+      };
+    case CHANGEEMPTYCELLNAME:
+      return {
+        emptyCell: {
+          ...state.emptyCell,
+          [action.payload.currentEmptyCellName]: [],
+          [action.payload.targetEmptyCellName]: [action.payload.card],
+        },
+        cardCascades: state.cardCascades,
         foundations: state.foundations,
       };
     case EMPTYCELLTOCASCADE:
