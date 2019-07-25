@@ -50,15 +50,28 @@ export default function FoundationsCardWall(props: Props): JSX.Element {
         dispatch(changeFoundation(item.card, item.foundationName, props.foundationName));
       }
     },
-    canDrop: (item: DragItemI): boolean => !lastCard
-      && (item.emptyCellName || Object.keys(props.freeCell.cardCascades).some((key): boolean => {
-        const [lastCascadeCard] = props.freeCell.cardCascades[key].slice(-1);
-        if (!lastCascadeCard) {
-          return false;
-        }
-        return lastCascadeCard.suits === item.card.suits
-          && lastCascadeCard.number === item.card.number;
-      })),
+    canDrop: (item: DragItemI): boolean => {
+      // if (!lastCard) {
+      //   return false;
+      // }
+      if (item.cascadeFieldName) {
+        return Object.keys(props.freeCell.cardCascades).some((key): boolean => {
+          const [lastCascadeCard] = props.freeCell.cardCascades[key].slice(-1);
+          if (!lastCascadeCard) {
+            return false;
+          }
+          return lastCascadeCard.suits === item.card.suits
+            && lastCascadeCard.number === item.card.number;
+        });
+      }
+      if (item.emptyCellName) {
+        return true;
+      }
+      if (item.foundationName) {
+        return true;
+      }
+      return false;
+    },
     collect: (monitor): { isOver: boolean; canDrop: boolean } => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),

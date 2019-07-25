@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeStyles } from '@material-ui/core/styles';
 import { DragItemI } from '../Card/Card';
-import { changeCascadeFieldName, emptyCellToCascades } from '../../../actions/freeCell/freeCell';
+import { changeCascadeFieldName, emptyCellToCascades, fundationToCascades } from '../../../actions/freeCell/freeCell';
 import { PlayCard } from '../../../reducers/playCards/playCards';
 
 const useStyles = makeStyles({
@@ -51,10 +51,26 @@ export default function CardWall(props: Props): JSX.Element {
       if (item.emptyCellName) {
         dispatch(emptyCellToCascades(item.card, item.emptyCellName, props.cascadeFieldName));
       }
+      if (item.foundationName) {
+        dispatch(fundationToCascades(item.card, item.foundationName, props.cascadeFieldName));
+      }
     },
-    canDrop: (item: DragItemI): boolean => item.cascadeFieldName !== props.cascadeFieldName
-      && (!lastCard ? true : item.card.number + 1 === lastCard.number
-      && suitsCheck(item.card.suits, lastCard.suits)),
+    canDrop: (item: DragItemI): boolean => {
+      if (item.cascadeFieldName) {
+        return item.cascadeFieldName !== props.cascadeFieldName
+          && (!lastCard ? true : item.card.number + 1 === lastCard.number
+          && suitsCheck(item.card.suits, lastCard.suits));
+      }
+      if (item.emptyCellName) {
+        return (!lastCard ? true : item.card.number + 1 === lastCard.number
+          && suitsCheck(item.card.suits, lastCard.suits));
+      }
+      if (item.foundationName) {
+        return (!lastCard ? true : item.card.number + 1 === lastCard.number
+          && suitsCheck(item.card.suits, lastCard.suits));
+      }
+      return false;
+    },
     collect: (monitor): { isOver: boolean; canDrop: boolean } => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
