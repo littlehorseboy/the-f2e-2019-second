@@ -31,17 +31,6 @@ export default function EmptyCellCard(props: Props): JSX.Element {
       card,
       emptyCellName: props.emptyCellName,
     },
-    // canDrag: props.cascadeField.every((cascade, index): boolean => (
-    //   // 比數字
-    //   props.cascadeField[index + 1]
-    //     ? cascade.number - 1 === props.cascadeField[index + 1].number
-    //     : true
-    // ) && (
-    //   // 比花色
-    //   props.cascadeField[index + 1]
-    //     ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
-    //     : true
-    // )),
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),

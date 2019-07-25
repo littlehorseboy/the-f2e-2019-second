@@ -23,13 +23,6 @@ const useStyles = makeStyles({
   },
 });
 
-const suitsCheck = (first: string, second: string): boolean => {
-  if (first === 'spade' || first === 'club') {
-    return second !== 'spade' && second !== 'club';
-  }
-  return second !== 'heart' && second !== 'diamond';
-};
-
 interface Props {
   foundationName: string;
   foundationCards: PlayCard[];
