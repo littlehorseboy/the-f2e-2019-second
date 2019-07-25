@@ -3,9 +3,10 @@ import { CardCascadesI } from '../../reducers/freeCell/freeCell';
 
 export const FILLCARDCASCADES = 'FILLCARDCASCADES';
 export const CHANGECASCADEFIELDNAME = 'CHANGECASCADEFIELDNAME';
-export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
+export const EMPTYCELLTOCASCADES = 'EMPTYCELLTOCASCADES';
+export const FOUNDATIONTOCASCADE = 'FOUNDATIONTOCASCADE';
 export const CHANGEEMPTYCELLNAME = 'CHANGEEMPTYCELLNAME';
-export const EMPTYCELLTOCASCADE = 'EMPTYCELLTOCASCADE';
+export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
 export const CHANGEFOUNDATION = 'CHANGEFOUNDATION';
 export const CASCADETOFOUNDATIONS = 'CASCADETOFOUNDATIONS';
 export const EMPTYCELLTOFOUNDATIONS = 'EMPTYCELLTOFOUNDATIONS';
@@ -48,7 +49,7 @@ export const changeCascadeFieldName = (
 });
 
 interface EmptyCellToCascadeActionI {
-  type: typeof EMPTYCELLTOCASCADE;
+  type: typeof EMPTYCELLTOCASCADES;
   payload: {
     card: PlayCard;
     currentEmptyCellName: string;
@@ -61,7 +62,7 @@ export const emptyCellToCascade = (
   currentEmptyCellName: string,
   targetCascadeFieldName: string,
 ): EmptyCellToCascadeActionI => ({
-  type: EMPTYCELLTOCASCADE,
+  type: EMPTYCELLTOCASCADES,
   payload: {
     card,
     currentEmptyCellName,

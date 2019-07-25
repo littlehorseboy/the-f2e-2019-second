@@ -3,7 +3,7 @@ import {
   FILLCARDCASCADES,
   FreeCellActionTypes,
   CHANGECASCADEFIELDNAME,
-  EMPTYCELLTOCASCADE,
+  EMPTYCELLTOCASCADES,
   CHANGEEMPTYCELLNAME,
   CASCADETOEMPTYCELL,
   CHANGEFOUNDATION,
@@ -120,7 +120,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
-    case EMPTYCELLTOCASCADE:
+    case EMPTYCELLTOCASCADES:
       return {
         emptyCell: {
           ...state.emptyCell,
