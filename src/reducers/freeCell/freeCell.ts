@@ -222,9 +222,10 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: {
           ...state.foundations,
-          [action.payload.targetFoundationName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
-            .filter((cardCascade): boolean => cardCascade.suits === action.payload.card.suits
-              && cardCascade.number === action.payload.card.number),
+          [action.payload.targetFoundationName]: [
+            ...(state.foundations[action.payload.targetFoundationName] as PlayCard[]),
+            action.payload.card,
+          ],
         },
       };
     case EMPTYCELLTOFOUNDATIONS:
@@ -236,9 +237,10 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         cardCascades: state.cardCascades,
         foundations: {
           ...state.foundations,
-          [action.payload.targetFoundationName]: (state.emptyCells[action.payload.currentEmptyCellName] as PlayCard[])
-            .filter((emptyCell): boolean => emptyCell.suits === action.payload.card.suits
-              && emptyCell.number === action.payload.card.number),
+          [action.payload.targetFoundationName]: [
+            ...(state.foundations[action.payload.targetFoundationName] as PlayCard[]),
+            action.payload.card,
+          ],
         },
       };
     default:

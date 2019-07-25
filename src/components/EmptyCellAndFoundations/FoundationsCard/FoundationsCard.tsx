@@ -25,23 +25,24 @@ export default function FoundationsCard(props: Props): JSX.Element {
 
   const card = props.foundationCards.find((foundationCard): PlayCard => foundationCard);
 
+  let foundationCards: PlayCard[] = [];
+
+  if (card) {
+    foundationCards = props.foundationCards.filter(
+      (foundationCard): boolean => !(foundationCard.suits === card.suits
+        && foundationCard.number === card.number),
+    );
+  }
+
+  const [lastCard] = props.foundationCards.slice(-1);
+
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: 'card',
       card,
       foundationName: props.foundationName,
     },
-    // canDrag: props.cascadeField.every((cascade, index): boolean => (
-    //   // 比數字
-    //   props.cascadeField[index + 1]
-    //     ? cascade.number - 1 === props.cascadeField[index + 1].number
-    //     : true
-    // ) && (
-    //   // 比花色
-    //   props.cascadeField[index + 1]
-    //     ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
-    //     : true
-    // )),
+    canDrag: card && lastCard.suits === card.suits && lastCard.number === card.number,
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),
@@ -57,6 +58,11 @@ export default function FoundationsCard(props: Props): JSX.Element {
       { isDragging },
     )}>
       {`${card.suits}${card.number}`}
+
+      {foundationCards.length > 0 && <FoundationsCard
+        foundationName={props.foundationName}
+        foundationCards={foundationCards}
+      />}
     </div>
   );
 }

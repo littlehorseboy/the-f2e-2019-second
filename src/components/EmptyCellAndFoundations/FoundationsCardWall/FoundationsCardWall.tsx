@@ -23,6 +23,11 @@ const useStyles = makeStyles({
   },
 });
 
+const suitsCheck = (first: string, second: string): boolean => (first === 'spade' && second === 'spade')
+    || (first === 'club' && second === 'club')
+    || (first === 'heart' && second === 'heart')
+    || (first === 'spade' && second === 'spade');
+
 interface Props {
   foundationName: string;
   foundationCards: PlayCard[];
@@ -51,26 +56,11 @@ export default function FoundationsCardWall(props: Props): JSX.Element {
       }
     },
     canDrop: (item: DragItemI): boolean => {
-      // if (!lastCard) {
-      //   return false;
-      // }
-      if (item.cascadeFieldName) {
-        return Object.keys(props.freeCell.cardCascades).some((key): boolean => {
-          const [lastCascadeCard] = props.freeCell.cardCascades[key].slice(-1);
-          if (!lastCascadeCard) {
-            return false;
-          }
-          return lastCascadeCard.suits === item.card.suits
-            && lastCascadeCard.number === item.card.number;
-        });
+      if (lastCard) {
+        return item.card.number === lastCard.number + 1
+          && suitsCheck(item.card.suits, lastCard.suits);
       }
-      if (item.emptyCellName) {
-        return true;
-      }
-      if (item.foundationName) {
-        return true;
-      }
-      return false;
+      return !lastCard && item.card.number === 1;
     },
     collect: (monitor): { isOver: boolean; canDrop: boolean } => ({
       isOver: monitor.isOver(),
