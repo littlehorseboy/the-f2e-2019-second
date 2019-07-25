@@ -4,8 +4,10 @@ import {
   FreeCellActionTypes,
   CHANGECASCADEFIELDNAME,
   EMPTYCELLTOCASCADES,
+  FOUNDATIONTOCASCADES,
   CHANGEEMPTYCELLNAME,
   CASCADETOEMPTYCELLS,
+  FOUNDATIONTOEMPTYCELLS,
   CHANGEFOUNDATIONNAME,
   CASCADETOFOUNDATIONS,
   EMPTYCELLTOFOUNDATIONS,
@@ -26,7 +28,7 @@ export interface CardCascadesI {
 }
 
 export interface FreeCell {
-  emptyCell: {
+  emptyCells: {
     first: null[] | PlayCard[];
     second: null[] | PlayCard[];
     third: null[] | PlayCard[];
@@ -47,7 +49,7 @@ export interface FreeCell {
 
 const initState: FreeCell = {
   // 空白區: 4 張的位置自由擺放牌組，影響遊戲區拖放數量
-  emptyCell: {
+  emptyCells: {
     first: [],
     second: [],
     third: [],
@@ -74,6 +76,9 @@ const initState: FreeCell = {
 };
 
 const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
+  /**
+   * 拖動複數卡片時，得將陣列切成兩半再填入 fieldName
+   */
   const changeCascadeFieldName = (
     card: PlayCard,
     currentCascadeFieldName: string,
@@ -101,7 +106,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
   switch (action.type) {
     case FILLCARDCASCADES:
       return {
-        emptyCell: state.emptyCell,
+        emptyCells: state.emptyCells,
         cardCascades: {
           ...action.payload.cardCascades,
         },
@@ -109,7 +114,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
       };
     case CHANGECASCADEFIELDNAME:
       return {
-        emptyCell: state.emptyCell,
+        emptyCells: state.emptyCells,
         cardCascades: {
           ...state.cardCascades,
           ...changeCascadeFieldName(
@@ -122,8 +127,8 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
       };
     case EMPTYCELLTOCASCADES:
       return {
-        emptyCell: {
-          ...state.emptyCell,
+        emptyCells: {
+          ...state.emptyCells,
           [action.payload.currentEmptyCellName]: [],
         },
         cardCascades: {
@@ -135,10 +140,27 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
+    case FOUNDATIONTOCASCADES:
+      return {
+        emptyCells: state.emptyCells,
+        cardCascades: {
+          ...state.cardCascades,
+          [action.payload.targetCascadeFieldName]: [
+            ...(state.cardCascades[action.payload.targetCascadeFieldName] as PlayCard[]),
+            action.payload.card,
+          ],
+        },
+        foundations: {
+          ...state.foundations,
+          [action.payload.currentFoundationName]: (state.foundations[action.payload.currentFoundationName] as PlayCard[])
+            .filter((foundation): boolean => !(foundation.suits === action.payload.card.suits
+              && foundation.number === action.payload.card.number)),
+        },
+      };
     case CHANGEEMPTYCELLNAME:
       return {
-        emptyCell: {
-          ...state.emptyCell,
+        emptyCells: {
+          ...state.emptyCells,
           [action.payload.currentEmptyCellName]: [],
           [action.payload.targetEmptyCellName]: [action.payload.card],
         },
@@ -147,8 +169,8 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
       };
     case CASCADETOEMPTYCELLS:
       return {
-        emptyCell: {
-          ...state.emptyCell,
+        emptyCells: {
+          ...state.emptyCells,
           [action.payload.targetEmptyCellName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
             .filter((cardCascade): boolean => cardCascade.suits === action.payload.card.suits
               && cardCascade.number === action.payload.card.number),
@@ -161,19 +183,37 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
-    case CHANGEFOUNDATIONNAME:
+    case FOUNDATIONTOEMPTYCELLS:
       return {
-        emptyCell: state.emptyCell,
+        emptyCells: {
+          ...state.emptyCells,
+          [action.payload.targetEmptyCellName]: (state.foundations[action.payload.currentFoundationName] as PlayCard[])
+            .filter((foundation): boolean => foundation.suits === action.payload.card.suits
+              && foundation.number === action.payload.card.number),
+        },
         cardCascades: state.cardCascades,
         foundations: {
           ...state.foundations,
-          [action.payload.currentFoundationName]: [],
+          [action.payload.currentFoundationName]: (state.foundations[action.payload.currentFoundationName] as PlayCard[])
+            .filter((foundation): boolean => !(foundation.suits === action.payload.card.suits
+              && foundation.number === action.payload.card.number)),
+        },
+      };
+    case CHANGEFOUNDATIONNAME:
+      return {
+        emptyCells: state.emptyCells,
+        cardCascades: state.cardCascades,
+        foundations: {
+          ...state.foundations,
+          [action.payload.currentFoundationName]: (state.foundations[action.payload.currentFoundationName] as PlayCard[])
+            .filter((foundation): boolean => !(foundation.suits === action.payload.card.suits
+              && foundation.number === action.payload.card.number)),
           [action.payload.targetFoundation]: [action.payload.card],
         },
       };
     case CASCADETOFOUNDATIONS:
       return {
-        emptyCell: state.emptyCell,
+        emptyCells: state.emptyCells,
         cardCascades: {
           ...state.cardCascades,
           [action.payload.currentCascadeFieldName]: (state.cardCascades[action.payload.currentCascadeFieldName] as PlayCard[])
@@ -189,16 +229,16 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
       };
     case EMPTYCELLTOFOUNDATIONS:
       return {
-        emptyCell: {
-          ...state.emptyCell,
+        emptyCells: {
+          ...state.emptyCells,
           [action.payload.currentEmptyCellName]: [],
         },
         cardCascades: state.cardCascades,
         foundations: {
           ...state.foundations,
-          [action.payload.targetFoundationName]: (state.emptyCell[action.payload.currentEmptyCellName] as PlayCard[])
-            .filter((card): boolean => card.suits === action.payload.card.suits
-              && card.number === action.payload.card.number),
+          [action.payload.targetFoundationName]: (state.emptyCells[action.payload.currentEmptyCellName] as PlayCard[])
+            .filter((emptyCell): boolean => emptyCell.suits === action.payload.card.suits
+              && emptyCell.number === action.payload.card.number),
         },
       };
     default:

@@ -26,16 +26,16 @@ export default function EmptyCellAndFoundations(): JSX.Element {
 
   return (
     <div className={classes.root}>
-      {Object.keys(freeCell.emptyCell).map((key): JSX.Element => (
+      {Object.keys(freeCell.emptyCells).map((key): JSX.Element => (
         <EmptyCellWall
           key={key}
           emptyCellName={key}
-          emptyCellCards={freeCell.emptyCell[key] as PlayCard[]}
+          emptyCellCards={freeCell.emptyCells[key] as PlayCard[]}
           freeCell={freeCell}
         >
           <EmptyCellCard
             emptyCellName={key}
-            emptyCellCards={freeCell.emptyCell[key] as PlayCard[]}
+            emptyCellCards={freeCell.emptyCells[key] as PlayCard[]}
           />
         </EmptyCellWall>
       ))}
