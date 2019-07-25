@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   root: {
     height: '100%',
     minHeight: 180,
-    // border: '1px solid blue',
+    border: '1px solid blue',
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,

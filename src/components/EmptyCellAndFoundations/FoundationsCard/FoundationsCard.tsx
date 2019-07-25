@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDrag, DragObjectWithType } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import { PlayCard } from '../../../reducers/playCards/playCards';
@@ -8,7 +8,6 @@ const useStyles = makeStyles({
   root: {
     height: '100%',
     minHeight: 180,
-    // border: '1px solid blue',
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,
