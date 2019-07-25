@@ -71,6 +71,28 @@ export const emptyCellToCascades = (
   },
 });
 
+interface FoundationToCascadesActionI {
+  type: typeof FOUNDATIONTOCASCADES;
+  payload: {
+    card: PlayCard;
+    currentFoundationName: string;
+    targetCascadeFieldName: string;
+  };
+}
+
+export const fundationToCascades = (
+  card: PlayCard,
+  currentFoundationName: string,
+  targetCascadeFieldName: string,
+): FoundationToCascadesActionI => ({
+  type: FOUNDATIONTOCASCADES,
+  payload: {
+    card,
+    currentFoundationName,
+    targetCascadeFieldName,
+  },
+});
+
 interface ChangeEmptyCellNameActionI {
   type: typeof CHANGEEMPTYCELLNAME;
   payload: {
@@ -115,24 +137,46 @@ export const cascadeToEmptyCells = (
   },
 });
 
+interface FoundationToEmptyCellsActionI {
+  type: typeof FOUNDATIONTOEMPTYCELLS;
+  payload: {
+    card: PlayCard;
+    currentFoundationName: string;
+    targetEmptyCellName: string;
+  };
+}
+
+export const foundationToEmptyCells = (
+  card: PlayCard,
+  currentFoundationName: string,
+  targetEmptyCellName: string,
+): FoundationToEmptyCellsActionI => ({
+  type: FOUNDATIONTOEMPTYCELLS,
+  payload: {
+    card,
+    currentFoundationName,
+    targetEmptyCellName,
+  },
+});
+
 interface ChangeFoundationActionI {
   type: typeof CHANGEFOUNDATIONNAME;
   payload: {
     card: PlayCard;
-    currentFoundation: string;
+    currentFoundationName: string;
     targetFoundation: string;
   };
 }
 
 export const changeFoundation = (
   card: PlayCard,
-  currentFoundation: string,
+  currentFoundationName: string,
   targetFoundation: string,
 ): ChangeFoundationActionI => ({
   type: CHANGEFOUNDATIONNAME,
   payload: {
     card,
-    currentFoundation,
+    currentFoundationName,
     targetFoundation,
   },
 });
@@ -182,6 +226,6 @@ export const emptyCellToFoundations = (
 });
 
 export type FreeCellActionTypes = FillCardCascadesActionI
-| ChangeCascadeFieldNameActionI | EmptyCellToCascadesActionI
-| ChangeEmptyCellNameActionI | CascadeToEmptyCellsActionI
+| ChangeCascadeFieldNameActionI | EmptyCellToCascadesActionI | FoundationToCascadesActionI
+| ChangeEmptyCellNameActionI | CascadeToEmptyCellsActionI | FoundationToEmptyCellsActionI
 | ChangeFoundationActionI | CascadeToFoundationsActionI | EmptyCellToFoundationsActionI;

@@ -167,7 +167,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         cardCascades: state.cardCascades,
         foundations: {
           ...state.foundations,
-          [action.payload.currentFoundation]: [],
+          [action.payload.currentFoundationName]: [],
           [action.payload.targetFoundation]: [action.payload.card],
         },
       };
