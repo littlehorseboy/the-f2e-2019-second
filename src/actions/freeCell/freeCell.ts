@@ -4,10 +4,11 @@ import { CardCascadesI } from '../../reducers/freeCell/freeCell';
 export const FILLCARDCASCADES = 'FILLCARDCASCADES';
 export const CHANGECASCADEFIELDNAME = 'CHANGECASCADEFIELDNAME';
 export const EMPTYCELLTOCASCADES = 'EMPTYCELLTOCASCADES';
-export const FOUNDATIONTOCASCADE = 'FOUNDATIONTOCASCADE';
+export const FOUNDATIONTOCASCADES = 'FOUNDATIONTOCASCADES';
 export const CHANGEEMPTYCELLNAME = 'CHANGEEMPTYCELLNAME';
-export const CASCADETOEMPTYCELL = 'CASCADETOEMPTYCELL';
-export const CHANGEFOUNDATION = 'CHANGEFOUNDATION';
+export const CASCADETOEMPTYCELLS = 'CASCADETOEMPTYCELLS';
+export const FOUNDATIONTOEMPTYCELLS = 'FOUNDATIONTOEMPTYCELLS';
+export const CHANGEFOUNDATIONNAME = 'CHANGEFOUNDATIONNAME';
 export const CASCADETOFOUNDATIONS = 'CASCADETOFOUNDATIONS';
 export const EMPTYCELLTOFOUNDATIONS = 'EMPTYCELLTOFOUNDATIONS';
 
@@ -48,7 +49,7 @@ export const changeCascadeFieldName = (
   },
 });
 
-interface EmptyCellToCascadeActionI {
+interface EmptyCellToCascadesActionI {
   type: typeof EMPTYCELLTOCASCADES;
   payload: {
     card: PlayCard;
@@ -57,11 +58,11 @@ interface EmptyCellToCascadeActionI {
   };
 }
 
-export const emptyCellToCascade = (
+export const emptyCellToCascades = (
   card: PlayCard,
   currentEmptyCellName: string,
   targetCascadeFieldName: string,
-): EmptyCellToCascadeActionI => ({
+): EmptyCellToCascadesActionI => ({
   type: EMPTYCELLTOCASCADES,
   payload: {
     card,
@@ -92,8 +93,8 @@ export const changeEmptyCellName = (
   },
 });
 
-interface CascadeToEmptyCellActionI {
-  type: typeof CASCADETOEMPTYCELL;
+interface CascadeToEmptyCellsActionI {
+  type: typeof CASCADETOEMPTYCELLS;
   payload: {
     card: PlayCard;
     currentCascadeFieldName: string;
@@ -101,12 +102,12 @@ interface CascadeToEmptyCellActionI {
   };
 }
 
-export const cascadeToEmptyCell = (
+export const cascadeToEmptyCells = (
   card: PlayCard,
   currentCascadeFieldName: string,
   targetEmptyCellName: string,
-): CascadeToEmptyCellActionI => ({
-  type: CASCADETOEMPTYCELL,
+): CascadeToEmptyCellsActionI => ({
+  type: CASCADETOEMPTYCELLS,
   payload: {
     card,
     currentCascadeFieldName,
@@ -115,7 +116,7 @@ export const cascadeToEmptyCell = (
 });
 
 interface ChangeFoundationActionI {
-  type: typeof CHANGEFOUNDATION;
+  type: typeof CHANGEFOUNDATIONNAME;
   payload: {
     card: PlayCard;
     currentFoundation: string;
@@ -128,7 +129,7 @@ export const changeFoundation = (
   currentFoundation: string,
   targetFoundation: string,
 ): ChangeFoundationActionI => ({
-  type: CHANGEFOUNDATION,
+  type: CHANGEFOUNDATIONNAME,
   payload: {
     card,
     currentFoundation,
@@ -181,6 +182,6 @@ export const emptyCellToFoundations = (
 });
 
 export type FreeCellActionTypes = FillCardCascadesActionI
-| ChangeCascadeFieldNameActionI | EmptyCellToCascadeActionI
-| ChangeEmptyCellNameActionI | CascadeToEmptyCellActionI
+| ChangeCascadeFieldNameActionI | EmptyCellToCascadesActionI
+| ChangeEmptyCellNameActionI | CascadeToEmptyCellsActionI
 | ChangeFoundationActionI | CascadeToFoundationsActionI | EmptyCellToFoundationsActionI;

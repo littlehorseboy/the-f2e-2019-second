@@ -5,8 +5,8 @@ import {
   CHANGECASCADEFIELDNAME,
   EMPTYCELLTOCASCADES,
   CHANGEEMPTYCELLNAME,
-  CASCADETOEMPTYCELL,
-  CHANGEFOUNDATION,
+  CASCADETOEMPTYCELLS,
+  CHANGEFOUNDATIONNAME,
   CASCADETOFOUNDATIONS,
   EMPTYCELLTOFOUNDATIONS,
 } from '../../actions/freeCell/freeCell';
@@ -145,7 +145,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         cardCascades: state.cardCascades,
         foundations: state.foundations,
       };
-    case CASCADETOEMPTYCELL:
+    case CASCADETOEMPTYCELLS:
       return {
         emptyCell: {
           ...state.emptyCell,
@@ -161,7 +161,7 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
         },
         foundations: state.foundations,
       };
-    case CHANGEFOUNDATION:
+    case CHANGEFOUNDATIONNAME:
       return {
         emptyCell: state.emptyCell,
         cardCascades: state.cardCascades,

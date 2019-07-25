@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeStyles } from '@material-ui/core/styles';
 import { DragItemI } from '../../CardCascade/Card/Card';
-import { cascadeToEmptyCell, changeEmptyCellName } from '../../../actions/freeCell/freeCell';
+import { cascadeToEmptyCells, changeEmptyCellName } from '../../../actions/freeCell/freeCell';
 import { PlayCard } from '../../../reducers/playCards/playCards';
 import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
@@ -48,7 +48,7 @@ export default function EmptyCellWall(props: Props): JSX.Element {
     accept: 'card',
     drop: (item: DragItemI): void | undefined => {
       if (item.cascadeFieldName) {
-        dispatch(cascadeToEmptyCell(item.card, item.cascadeFieldName, props.emptyCellName));
+        dispatch(cascadeToEmptyCells(item.card, item.cascadeFieldName, props.emptyCellName));
       }
       if (item.emptyCellName) {
         dispatch(changeEmptyCellName(item.card, item.emptyCellName, props.emptyCellName));

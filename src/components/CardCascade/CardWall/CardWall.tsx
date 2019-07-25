@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeStyles } from '@material-ui/core/styles';
 import { DragItemI } from '../Card/Card';
-import { changeCascadeFieldName, emptyCellToCascade } from '../../../actions/freeCell/freeCell';
+import { changeCascadeFieldName, emptyCellToCascades } from '../../../actions/freeCell/freeCell';
 import { PlayCard } from '../../../reducers/playCards/playCards';
 
 const useStyles = makeStyles({
@@ -49,7 +49,7 @@ export default function CardWall(props: Props): JSX.Element {
         dispatch(changeCascadeFieldName(item.card, item.cascadeFieldName, props.cascadeFieldName));
       }
       if (item.emptyCellName) {
-        dispatch(emptyCellToCascade(item.card, item.emptyCellName, props.cascadeFieldName));
+        dispatch(emptyCellToCascades(item.card, item.emptyCellName, props.cascadeFieldName));
       }
     },
     canDrop: (item: DragItemI): boolean => item.cascadeFieldName !== props.cascadeFieldName
