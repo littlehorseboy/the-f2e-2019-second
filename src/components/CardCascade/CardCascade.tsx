@@ -82,7 +82,7 @@ export default function CardCascade(): JSX.Element {
         <React.Fragment key={key}>
           <CardWall
             cascadeFieldName={key}
-            cascadeField={(freeCell.cardCascades[key] as PlayCard[])}
+            cascadeField={freeCell.cardCascades[key] as PlayCard[]}
           >
             <Card
               cascadeFieldName={key}

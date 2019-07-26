@@ -75,7 +75,7 @@ export default function Card(props: Props): JSX.Element {
   }
 
   return (
-    <div ref={drag} className={classNames(
+    <div ref={drag} data-testid="draggingCard" className={classNames(
       classes.root,
       { isDragging },
     )}>
