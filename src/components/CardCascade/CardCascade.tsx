@@ -41,22 +41,22 @@ export default function CardCascade(): JSX.Element {
       ...playCards.slice(0, 1),
     ];
     const second = [
-      { suits: 'heart', number: 7, imgSrc: '' },
-      { suits: 'heart', number: 6, imgSrc: '' },
-      { suits: 'heart', number: 5, imgSrc: '' },
-      { suits: 'heart', number: 4, imgSrc: '' },
-      { suits: 'spade', number: 3, imgSrc: '' },
-      { suits: 'heart', number: 2, imgSrc: '' },
-      { suits: 'spade', number: 1, imgSrc: '' },
+      ...playCards.slice(6 + 13, 7 + 13),
+      ...playCards.slice(5, 6),
+      ...playCards.slice(4, 5),
+      ...playCards.slice(3 + 13, 4 + 13),
+      ...playCards.slice(2, 3),
+      ...playCards.slice(1 + 13, 2 + 13),
+      ...playCards.slice(0, 1),
     ];
     const third = [
-      { suits: 'heart', number: 7, imgSrc: '' },
-      { suits: 'heart', number: 6, imgSrc: '' },
-      { suits: 'heart', number: 5, imgSrc: '' },
-      { suits: 'spade', number: 4, imgSrc: '' },
-      { suits: 'heart', number: 3, imgSrc: '' },
-      { suits: 'spade', number: 2, imgSrc: '' },
-      { suits: 'heart', number: 1, imgSrc: '' },
+      ...playCards.slice(6 + 13, 7 + 13),
+      ...playCards.slice(5, 6),
+      ...playCards.slice(4, 5),
+      ...playCards.slice(3 + 13, 4 + 13),
+      ...playCards.slice(2, 3),
+      ...playCards.slice(1 + 13, 2 + 13),
+      ...playCards.slice(0, 1),
     ];
     const fourth = playCards.slice(0, 0);
     const fifth = playCards.slice(0, 0);

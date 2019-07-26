@@ -8,6 +8,7 @@ import { PlayCard } from '../../../reducers/playCards/playCards';
 
 const useStyles = makeStyles({
   root: {
+    minHeight: 180,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,

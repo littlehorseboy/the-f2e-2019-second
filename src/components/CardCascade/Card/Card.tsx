@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   root: {
     height: '100%',
     minHeight: 180,
-    border: '1px solid blue',
+    // border: '1px solid blue',
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,
@@ -79,7 +79,11 @@ export default function Card(props: Props): JSX.Element {
       classes.root,
       { isDragging },
     )}>
-      {`${card.suits}${card.number}`}
+      {/* {`${card.suits}${card.number}`} */}
+      {card.imgSrc && (
+        <img src={card.imgSrc} alt={`${card.suits}${card.number}`} />
+      )}
+
 
       {cascadeField.length > 0 && <Card
         cascadeField={cascadeField}
