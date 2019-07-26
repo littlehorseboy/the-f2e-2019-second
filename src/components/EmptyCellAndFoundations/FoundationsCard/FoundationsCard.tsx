@@ -57,7 +57,9 @@ export default function FoundationsCard(props: Props): JSX.Element {
       classes.root,
       { isDragging },
     )}>
-      {`${card.suits}${card.number}`}
+      {card.imgSrc && (
+        <img src={card.imgSrc} alt={`${card.suits}${card.number}`} />
+      )}
 
       {foundationCards.length > 0 && <FoundationsCard
         foundationName={props.foundationName}

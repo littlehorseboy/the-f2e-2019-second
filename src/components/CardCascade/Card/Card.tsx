@@ -79,7 +79,6 @@ export default function Card(props: Props): JSX.Element {
       classes.root,
       { isDragging },
     )}>
-      {/* {`${card.suits}${card.number}`} */}
       {card.imgSrc && (
         <img src={card.imgSrc} alt={`${card.suits}${card.number}`} />
       )}
