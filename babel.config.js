@@ -6,7 +6,11 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: [
-    'react-remove-properties',
-  ],
+  env: {
+    production: {
+      plugins: [
+        ['react-remove-properties', { properties: ['data-testid'] }],
+      ],
+    },
+  },
 };
