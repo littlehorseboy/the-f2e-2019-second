@@ -72,7 +72,7 @@ export default function CardCascade(): JSX.Element {
       ...playCards.slice(1, 2),
       ...playCards.slice(0 + 13 + 13, 1 + 13 + 13),
     ];
-    const fifth = playCards.slice(0, 0);
+    const fifth = playCards.slice(0 + 13 + 13 + 13, 1 + 13 + 13 + 13);
     const sixth = playCards.slice(0, 0);
     const seventh = playCards.slice(0, 0);
     const eighth = playCards.slice(0, 0);

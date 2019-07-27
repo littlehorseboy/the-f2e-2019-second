@@ -12,10 +12,11 @@ const useStyles = makeStyles({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-    border: '1px solid red',
   },
   cardWallWrapper: {
-    // padding: 8,
+    '& > div': {
+      marginTop: 0,
+    },
   },
   emptyCard: {
     backgroundColor: '#C9C9C9',
