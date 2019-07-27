@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 210">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 150">
   <defs>
     <style>
       .cls-1 {
@@ -15,7 +15,7 @@
         filter: url(#Rectangle_1);
       }
     </style>
-    <filter id="Rectangle_1" x="0" y="0" width="160" height="210" filterUnits="userSpaceOnUse">
+    <filter id="Rectangle_1" x="0" y="0" width="100" height="150" filterUnits="userSpaceOnUse">
       <feOffset dx="3" dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="10" result="blur"/>
       <feFlood flood-opacity="0.102"/>
@@ -27,20 +27,20 @@
     <g id="Group_229" data-name="Group 229" transform="translate(-751 569)">
       <g id="Symbol_5_259" data-name="Symbol 5 – 259" transform="translate(661 6)">
         <g class="cls-3" transform="matrix(1, 0, 0, 1, 113, 217)">
-          <rect id="Rectangle_1-2" data-name="Rectangle 1" class="cls-1" width="100" height="150" rx="5" transform="translate(27 27)"/>
+          <rect id="Rectangle_1-2" data-name="Rectangle 1" class="cls-1" width="100" height="150" rx="5" />
         </g>
       </g>
-      <g id="Group_8" data-name="Group 8" transform="translate(0 -3)">
+      <g id="Group_8" data-name="Group 8" transform="translate(-27 -30)">
         <text id="A" class="cls-2" transform="translate(807 269)"><tspan x="0" y="0">A</tspan></text>
         <path id="Union_2" data-name="Union 2" d="M5.023,11l.732-3.932H5.423A2.712,2.712,0,1,1,4.657,5.1h.211a2.712,2.712,0,1,1,2.591,0h.211a2.712,2.712,0,1,1-.766,1.973H6.423L7.173,11Z" transform="translate(806 272.085)"/>
       </g>
-      <g id="Group_9" data-name="Group 9" transform="translate(1702.328 653.085) rotate(180)">
-        <text id="Q" class="cls-2" transform="translate(807 269)"><tspan x="0" y="0">Q</tspan></text>
+      <g id="Group_9" data-name="Group 9" transform="translate(1675.328 626.085) rotate(180)">
+        <text id="A-2" class="cls-2" transform="translate(807 269)"><tspan x="0" y="0">A</tspan></text>
         <g id="Symbol_3_113" data-name="Symbol 3 – 113" transform="translate(314.423 -53)">
           <path id="Union_2-2" data-name="Union 2" d="M5.023,11l.732-3.932H5.423A2.712,2.712,0,1,1,4.657,5.1h.211a2.712,2.712,0,1,1,2.591,0h.211a2.712,2.712,0,1,1-.766,1.973H6.423L7.173,11Z" transform="translate(491.577 325.085)"/>
         </g>
       </g>
     </g>
-    <path id="Union_12" data-name="Union 12" d="M33.749,73.915,38.666,47.5H36.442A18.225,18.225,0,1,1,31.294,34.24h1.421a18.225,18.225,0,1,1,17.412,0h1.421A18.225,18.225,0,1,1,46.4,47.5H43.157L48.2,73.915Z" transform="translate(59 857)"/>
+    <path id="Union_12" data-name="Union 12" d="M33.749,73.915,38.666,47.5H36.442A18.225,18.225,0,1,1,31.294,34.24h1.421a18.225,18.225,0,1,1,17.412,0h1.421A18.225,18.225,0,1,1,46.4,47.5H43.157L48.2,73.915Z" transform="translate(32 830)"/>
   </g>
 </svg>
