@@ -35,7 +35,14 @@ const freeCell: FreeCell = {
 };
 
 test('測試', (): void => {
-  const utils = render(<Card cascadeFieldName="first" cascadeField={freeCell.cardCascades.first as PlayCard[]} />);
+  const utils = render(<Card
+    cascadeFieldName="first"
+    cascadeField={freeCell.cardCascades.first as PlayCard[]}
+    emptyCellsLen={5 - freeCell.emptyCells.first.length
+      - freeCell.emptyCells.second.length
+      - freeCell.emptyCells.third.length
+      - freeCell.emptyCells.fourth.length}
+  />);
   const el = utils.getByTestId('draggingCard');
 
   expect(el).toBe('div');

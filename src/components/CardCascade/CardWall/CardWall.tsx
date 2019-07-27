@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     border: '1px solid red',
   },
   cardWallWrapper: {
-    padding: 8,
+    // padding: 8,
   },
   emptyCard: {
     backgroundColor: '#C9C9C9',

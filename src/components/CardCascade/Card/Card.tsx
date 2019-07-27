@@ -26,6 +26,7 @@ const suitsCheck = (first: string, second: string): boolean => {
 interface Props {
   cascadeFieldName: string;
   cascadeField: PlayCard[];
+  emptyCellsLen: number;
 }
 
 export interface DragItemI extends DragObjectWithType {
@@ -39,6 +40,7 @@ export default function Card(props: Props): JSX.Element {
   const classes = useStyles();
 
   const card = props.cascadeField.find((cascade): PlayCard => cascade);
+  const cardIndex = props.cascadeField.findIndex((cascade): PlayCard => cascade);
 
   let cascadeField: PlayCard[] = [];
 
@@ -54,17 +56,18 @@ export default function Card(props: Props): JSX.Element {
       card,
       cascadeFieldName: props.cascadeFieldName,
     },
-    canDrag: props.cascadeField.every((cascade, index): boolean => (
-      // 比數字
-      props.cascadeField[index + 1]
-        ? cascade.number - 1 === props.cascadeField[index + 1].number
-        : true
-    ) && (
-      // 比花色
-      props.cascadeField[index + 1]
-        ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
-        : true
-    )),
+    canDrag: props.emptyCellsLen >= (cardIndex !== -1 ? props.cascadeField.length - cardIndex : 0)
+      && props.cascadeField.every((cascade, index): boolean => (
+        // 比數字
+        props.cascadeField[index + 1]
+          ? cascade.number - 1 === props.cascadeField[index + 1].number
+          : true
+      ) && (
+        // 比花色
+        props.cascadeField[index + 1]
+          ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
+          : true
+      )),
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),
@@ -87,6 +90,7 @@ export default function Card(props: Props): JSX.Element {
       {cascadeField.length > 0 && <Card
         cascadeField={cascadeField}
         cascadeFieldName={props.cascadeFieldName}
+        emptyCellsLen={props.emptyCellsLen}
       />}
     </div>
   );

@@ -27,6 +27,11 @@ export default function CardCascade(): JSX.Element {
     state: { freeCellReducer: FreeCell },
   ): FreeCell => state.freeCellReducer);
 
+  const emptyCellsLen = 5 - freeCell.emptyCells.first.length
+    - freeCell.emptyCells.second.length
+    - freeCell.emptyCells.third.length
+    - freeCell.emptyCells.fourth.length;
+
   const dispatch = useDispatch();
 
   useEffect((): void => {
@@ -58,7 +63,15 @@ export default function CardCascade(): JSX.Element {
       ...playCards.slice(1 + 13, 2 + 13),
       ...playCards.slice(0, 1),
     ];
-    const fourth = playCards.slice(0, 0);
+    const fourth = [
+      ...playCards.slice(6, 7),
+      ...playCards.slice(5 + 13 + 13, 6 + 13 + 13),
+      ...playCards.slice(4 + 13 + 13, 5 + 13 + 13),
+      ...playCards.slice(3, 4),
+      ...playCards.slice(2 + 13 + 13, 3 + 13 + 13),
+      ...playCards.slice(1, 2),
+      ...playCards.slice(0 + 13 + 13, 1 + 13 + 13),
+    ];
     const fifth = playCards.slice(0, 0);
     const sixth = playCards.slice(0, 0);
     const seventh = playCards.slice(0, 0);
@@ -87,6 +100,7 @@ export default function CardCascade(): JSX.Element {
             <Card
               cascadeFieldName={key}
               cascadeField={freeCell.cardCascades[key] as PlayCard[]}
+              emptyCellsLen={emptyCellsLen}
             />
           </CardWall>
           {key === 'fourth' && <div className={classes.divider}></div>}
