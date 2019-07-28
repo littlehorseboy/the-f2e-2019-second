@@ -9,18 +9,20 @@ import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
 const useStyles = makeStyles({
   root: {
-    minHeight: 145.5,
+    height: 145.5,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
     border: '1px solid red',
   },
   cardWallWrapper: {
-    padding: 8,
+    padding: 14,
   },
   emptyCard: {
-    backgroundColor: '#C9C9C9',
-    height: 145.5,
+    backgroundColor: 'transparent',
+    border: '2px solid #4C653C',
+    borderRadius: 6,
+    height: 130.5,
   },
 });
 
@@ -82,7 +84,7 @@ export default function EmptyCellWall(props: Props): JSX.Element {
       <div className={classes.cardWallWrapper}>
         {props.children}
 
-        {isOver && canDrop && <div className={classes.emptyCard}>可以放</div>}
+        {isOver && canDrop && <div className={classes.emptyCard}></div>}
       </div>
     </div>
   );

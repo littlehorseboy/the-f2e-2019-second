@@ -29,7 +29,6 @@ const useStyles = makeStyles({
   },
   toolbar: {
     display: 'flex',
-    paddingBottom: 32,
     '& > div': {
       flexGrow: 1,
       flexShrink: 1,

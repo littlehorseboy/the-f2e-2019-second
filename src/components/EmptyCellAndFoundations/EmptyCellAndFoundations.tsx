@@ -12,6 +12,7 @@ import { FreeCell } from '../../reducers/freeCell/freeCell';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
+    marginBottom: 12,
   },
   divider: {
     width: 200,

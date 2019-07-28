@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     flexBasis: 0,
   },
   cardWallWrapper: {
-    padding: '12px 12px 0 12px',
+    padding: '14px 14px 0 14px',
     '& > div': {
       marginTop: 0,
     },
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     backgroundColor: 'transparent',
     border: '2px solid #4C653C',
     borderRadius: 6,
-    height: 145.5,
+    height: 130.5,
   },
 });
 
