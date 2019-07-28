@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 150">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 14px;
+        font-family: HelveticaNeue-Bold, Helvetica Neue;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        filter: url(#Rectangle_1);
+      }
+    </style>
+    <filter id="Rectangle_1" x="0" y="0" width="100" height="150" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_268" data-name="Group 268" transform="translate(-173 -810)">
+    <g id="Group_230" data-name="Group 230" transform="translate(-601 587)">
+      <g id="Symbol_5_306" data-name="Symbol 5 – 306" transform="translate(661 6)">
+        <g class="cls-3" transform="matrix(1, 0, 0, 1, 113, 217)">
+          <rect id="Rectangle_1-2" data-name="Rectangle 1" class="cls-1" width="100" height="150" rx="5" />
+        </g>
+      </g>
+      <g id="Group_8" data-name="Group 8" transform="translate(-27 -30)">
+        <text id="_2" data-name="2" class="cls-2" transform="translate(808 269)"><tspan x="0" y="0">2</tspan></text>
+        <g id="Symbol_3_136" data-name="Symbol 3 – 136" transform="translate(314.423 -53)">
+          <path id="Union_2" data-name="Union 2" d="M5.023,11l.732-3.932H5.423A2.712,2.712,0,1,1,4.657,5.1h.211a2.712,2.712,0,1,1,2.591,0h.211a2.712,2.712,0,1,1-.766,1.973H6.423L7.173,11Z" transform="translate(491.577 325.085)"/>
+        </g>
+      </g>
+      <g id="Group_9" data-name="Group 9" transform="translate(1675.328 626.085) rotate(180)">
+        <text id="_2-2" class="cls-2" transform="translate(807 269)"><tspan x="0" y="0">2</tspan></text>
+        <g id="Symbol_3_137" data-name="Symbol 3 – 137" transform="translate(314.423 -53)">
+          <path id="Union_2-2" data-name="Union 2" d="M5.023,11l.732-3.932H5.423A2.712,2.712,0,1,1,4.657,5.1h.211a2.712,2.712,0,1,1,2.591,0h.211a2.712,2.712,0,1,1-.766,1.973H6.423L7.173,11Z" transform="translate(491.577 325.085)"/>
+        </g>
+      </g>
+    </g>
+    <g id="Group_267" data-name="Group 267" transform="translate(-24 -20.915)">
+      <path id="Union_13" data-name="Union 13" d="M11.407,24.983l1.662-8.93h-.752a6.16,6.16,0,1,1-1.74-4.48h.48a6.16,6.16,0,1,1,5.885,0h.48a6.16,6.16,0,1,1-1.74,4.48h-1.1l1.7,8.93Z" transform="translate(233 878.085)"/>
+      <path id="Union_14" data-name="Union 14" d="M11.407,24.983l1.662-8.93h-.752a6.16,6.16,0,1,1-1.74-4.48h.48a6.16,6.16,0,1,1,5.885,0h.48a6.16,6.16,0,1,1-1.74,4.48h-1.1l1.7,8.93Z" transform="translate(261 930.069) rotate(180)"/>
+    </g>
+  </g>
+</svg>

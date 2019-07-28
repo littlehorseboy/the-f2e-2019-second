@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 150">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 14px;
+        font-family: HelveticaNeue-Bold, Helvetica Neue;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        filter: url(#Rectangle_1);
+      }
+    </style>
+    <filter id="Rectangle_1" x="0" y="0" width="100" height="150" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_146" data-name="Group 146" transform="translate(-14 -271)">
+    <g id="Group_96" data-name="Group 96" transform="translate(-593 48)">
+      <g id="Group_7" data-name="Group 7">
+        <g id="Symbol_5_256" data-name="Symbol 5 – 256" transform="translate(494 6)">
+          <g class="cls-3" transform="matrix(1, 0, 0, 1, 113, 217)">
+            <rect id="Rectangle_1-2" data-name="Rectangle 1" class="cls-1" width="100" height="150" rx="5" />
+          </g>
+        </g>
+        <g id="Group_5" data-name="Group 5" transform="translate(-27 -30)">
+          <text id="A" class="cls-2" transform="translate(640 269)"><tspan x="0" y="0">A</tspan></text>
+          <path id="Union_4" data-name="Union 4" d="M4.311,13.067l.521-2.8a2.6,2.6,0,0,1-1.966.906A2.752,2.752,0,0,1,.006,8.426a4.587,4.587,0,0,1,.313-2.09A6.639,6.639,0,0,1,1.386,4.527c.344-.388.79-.935,1.257-1.453.753-.836,2.744-3.1,2.863-3.1h0a.005.005,0,0,1,0,.005C5.63.112,7.6,2.318,8.357,3.161c.467.518.913,1.065,1.257,1.453a6.642,6.642,0,0,1,1.067,1.809,4.587,4.587,0,0,1,.312,2.09,2.752,2.752,0,0,1-2.86,2.749,2.612,2.612,0,0,1-2.083-1.05l.544,2.854ZM5.5,8.8l0-.033,0,.033Z" transform="translate(639 273.332)"/>
+        </g>
+        <g id="Group_6" data-name="Group 6" transform="translate(1341 626.399) rotate(180)">
+          <text id="A-2" data-name="A" class="cls-2" transform="translate(640 269)"><tspan x="0" y="0">A</tspan></text>
+          <g id="Symbol_4_122" data-name="Symbol 4 – 122" transform="translate(116.711 -90)">
+            <path id="Union_4-2" data-name="Union 4" d="M4.311,13.067l.521-2.8a2.6,2.6,0,0,1-1.966.906A2.752,2.752,0,0,1,.006,8.426a4.587,4.587,0,0,1,.313-2.09A6.639,6.639,0,0,1,1.386,4.527c.344-.388.79-.935,1.257-1.453.753-.836,2.744-3.1,2.863-3.1h0a.005.005,0,0,1,0,.005C5.63.112,7.6,2.318,8.357,3.161c.467.518.913,1.065,1.257,1.453a6.642,6.642,0,0,1,1.067,1.809,4.587,4.587,0,0,1,.312,2.09,2.752,2.752,0,0,1-2.86,2.749,2.612,2.612,0,0,1-2.083-1.05l.544,2.854ZM5.5,8.8l0-.033,0,.033Z" transform="translate(522.289 363.332)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Union_6" data-name="Union 6" d="M27.435,83.3l3.313-17.8a16.558,16.558,0,0,1-12.511,5.763C8.925,71.258.5,65.084.04,53.766c0-2.35-.5-8.023,1.989-13.3.844-1.793,2.758-6.97,6.789-11.514,2.191-2.47,5.029-5.953,8-9.247C21.612,14.389,34.276-.025,35.039-.02V-.027l.007.007a.033.033,0,0,1,.029.033c.753.845,13.27,14.882,18.108,20.248,2.97,3.3,5.808,6.777,8,9.248,4.031,4.543,5.945,9.721,6.79,11.514,2.484,5.274,1.988,10.947,1.988,13.3-.456,11.317-8.885,17.491-18.2,17.491A16.625,16.625,0,0,1,38.5,65.133L41.968,83.3ZM34.99,56.164q-.01-.1-.02-.207c-.008.069-.017.138-.026.207Z" transform="translate(29 304.027)"/>
+  </g>
+</svg>
