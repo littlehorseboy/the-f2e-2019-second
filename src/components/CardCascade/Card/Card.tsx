@@ -7,12 +7,15 @@ import { PlayCard } from '../../../reducers/playCards/playCards';
 const useStyles = makeStyles({
   root: {
     height: '100%',
-    minHeight: 180,
-    // border: '1px solid blue',
+    minHeight: 145.5,
+    marginTop: -115,
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,
     },
+  },
+  img: {
+    boxShadow: '0px 1px 8px 0px rgba(0,0,0,0.1)',
   },
 });
 
@@ -83,7 +86,7 @@ export default function Card(props: Props): JSX.Element {
       { isDragging },
     )}>
       {card.imgSrc && (
-        <img src={card.imgSrc} alt={`${card.suits}${card.number}`} />
+        <img className={classes.img} src={card.imgSrc} alt={`${card.suits}${card.number}`} />
       )}
 
 

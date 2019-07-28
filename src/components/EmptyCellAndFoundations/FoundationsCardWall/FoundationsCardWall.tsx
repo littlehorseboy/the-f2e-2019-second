@@ -9,7 +9,7 @@ import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
 const useStyles = makeStyles({
   root: {
-    minHeight: 180,
+    minHeight: 145.5,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
   emptyCard: {
     backgroundColor: '#C9C9C9',
-    height: 180,
+    height: 145.5,
   },
 });
 

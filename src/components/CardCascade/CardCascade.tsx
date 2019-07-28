@@ -37,6 +37,7 @@ export default function CardCascade(): JSX.Element {
   useEffect((): void => {
     // 牌組題目還需要擴充
     const first = [
+      ...playCards.slice(7 + 13, 13 + 13).reverse(),
       ...playCards.slice(6 + 13, 7 + 13),
       ...playCards.slice(5, 6),
       ...playCards.slice(4, 5),

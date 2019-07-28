@@ -8,19 +8,20 @@ import { PlayCard } from '../../../reducers/playCards/playCards';
 
 const useStyles = makeStyles({
   root: {
-    minHeight: 180,
+    minHeight: 145.5,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
   },
   cardWallWrapper: {
+    padding: '12px 12px 0 12px',
     '& > div': {
       marginTop: 0,
     },
   },
   emptyCard: {
     backgroundColor: '#C9C9C9',
-    height: 180,
+    height: 145.5,
   },
 });
 

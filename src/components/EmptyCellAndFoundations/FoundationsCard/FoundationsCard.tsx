@@ -7,7 +7,7 @@ import { PlayCard } from '../../../reducers/playCards/playCards';
 const useStyles = makeStyles({
   root: {
     height: '100%',
-    minHeight: 180,
+    minHeight: 145.5,
     opacity: 1,
     '&.isDragging': {
       opacity: 0.3,
