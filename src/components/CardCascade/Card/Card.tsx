@@ -13,6 +13,10 @@ const useStyles = makeStyles({
     '&.isDragging': {
       opacity: 0.3,
     },
+    cursor: 'no-drop',
+    '&.canDrag': {
+      cursor: 'grab',
+    },
   },
   img: {
     boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.08),0px 1px 1px 0px rgba(0,0,0,0.04),0px 2px 1px -1px rgba(0,0,0,0.02)',
@@ -53,24 +57,29 @@ export default function Card(props: Props): JSX.Element {
     );
   }
 
+  const canDrag = props.emptyCellsLen >= (
+    cardIndex !== -1
+      ? props.cascadeField.length - cardIndex
+      : 0
+  ) && props.cascadeField.every((cascade, index): boolean => (
+    // 比數字
+    props.cascadeField[index + 1]
+      ? cascade.number - 1 === props.cascadeField[index + 1].number
+      : true
+  ) && (
+    // 比花色
+    props.cascadeField[index + 1]
+      ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
+      : true
+  ));
+
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: 'card',
       card,
       cascadeFieldName: props.cascadeFieldName,
     },
-    canDrag: props.emptyCellsLen >= (cardIndex !== -1 ? props.cascadeField.length - cardIndex : 0)
-      && props.cascadeField.every((cascade, index): boolean => (
-        // 比數字
-        props.cascadeField[index + 1]
-          ? cascade.number - 1 === props.cascadeField[index + 1].number
-          : true
-      ) && (
-        // 比花色
-        props.cascadeField[index + 1]
-          ? suitsCheck(cascade.suits, props.cascadeField[index + 1].suits)
-          : true
-      )),
+    canDrag,
     collect: (monitor): { isDragging: boolean } => ({
       isDragging: monitor.isDragging(),
     }),
@@ -84,6 +93,7 @@ export default function Card(props: Props): JSX.Element {
     <div ref={drag} data-testid="draggingCard" className={classNames(
       classes.root,
       { isDragging },
+      { canDrag },
     )}>
       {card.imgSrc && (
         <img className={classes.img} src={card.imgSrc} alt={`${card.suits}${card.number}`} />
