@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Main(): JSX.Element {
+export default function ScoreText(): JSX.Element {
   const classes = useStyles();
 
   const freeCell = useSelector((

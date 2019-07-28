@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 let timer = setInterval((): void => {}, 10000);
 
-export default function EmptyCellAndFoundations(): JSX.Element {
+export default function Timing(): JSX.Element {
   const classes = useStyles();
 
   const time = useSelector((
