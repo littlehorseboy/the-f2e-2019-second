@@ -7,21 +7,28 @@ import { changeFoundation, cascadeToFoundations, emptyCellToFoundations } from '
 import { PlayCard } from '../../../reducers/playCards/playCards';
 import { FreeCell } from '../../../reducers/freeCell/freeCell';
 
+const spadeImg = require('../../../assets/images/icons/spade.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
+const heartImg = require('../../../assets/images/icons/heart.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
+const diamondImg = require('../../../assets/images/icons/diamond.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
+const clubImg = require('../../../assets/images/icons/club.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
+
 const useStyles = makeStyles({
   root: {
     height: 145.5,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-    border: '1px solid red',
   },
   cardWallWrapper: {
-    margin: 14,
+    margin: '14px 14px 0 14px',
+    width: 'calc(100% - 28px)',
+    height: 'calc(100% - 14px)',
+    backgroundColor: 'rgba(76, 101, 60, 0.3)',
+    borderRadius: 6,
     position: 'relative',
   },
   emptyCard: {
-    backgroundColor: 'transparent',
-    border: '2px solid #4C653C',
+    backgroundColor: 'rgba(76, 101, 60, 0.3)',
     borderRadius: 6,
     height: 130.5,
   },
@@ -72,9 +79,28 @@ export default function FoundationsCardWall(props: Props): JSX.Element {
     }),
   });
 
+  const backgoundImgPath = ((): string => {
+    if (props.foundationName === 'first') {
+      return `url(${spadeImg})`;
+    }
+    if (props.foundationName === 'second') {
+      return `url(${heartImg})`;
+    }
+    if (props.foundationName === 'third') {
+      return `url(${diamondImg})`;
+    }
+    if (props.foundationName === 'fourth') {
+      return `url(${clubImg})`;
+    }
+    return '';
+  })();
+
   return (
     <div ref={drop} className={classes.root}>
-      <div className={classes.cardWallWrapper}>
+      <div
+        className={classes.cardWallWrapper}
+        style={{ backgroundImage: backgoundImgPath }}
+      >
         {props.children}
 
         {isOver && canDrop && <div className={classes.emptyCard}></div>}

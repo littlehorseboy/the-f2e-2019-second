@@ -20,8 +20,7 @@ const useStyles = makeStyles({
     },
   },
   emptyCard: {
-    backgroundColor: 'transparent',
-    border: '2px solid #4C653C',
+    backgroundColor: 'rgba(76, 101, 60, 0.3)',
     borderRadius: 6,
     height: 130.5,
   },
