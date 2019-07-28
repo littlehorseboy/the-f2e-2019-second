@@ -36,47 +36,75 @@ export default function CardCascade(): JSX.Element {
 
   useEffect((): void => {
     // 牌組題目還需要擴充
+    // #5478730
     const first = [
-      ...playCards.slice(7 + 13, 13 + 13).reverse(),
-      ...playCards.slice(6 + 13, 7 + 13),
-      ...playCards.slice(5, 6),
-      ...playCards.slice(4, 5),
-      ...playCards.slice(3 + 13, 4 + 13),
-      ...playCards.slice(2, 3),
-      ...playCards.slice(1 + 13, 2 + 13),
-      ...playCards.slice(0, 1),
+      playCards[6 - 1],
+      playCards[3 + 13 + 13 - 1],
+      playCards[7 + 13 - 1],
+      playCards[7 - 1],
+      playCards[2 + 13 - 1],
+      playCards[2 + 13 + 13 - 1],
+      playCards[13 + 13 + 13 - 1],
     ];
     const second = [
-      ...playCards.slice(6 + 13, 7 + 13),
-      ...playCards.slice(5, 6),
-      ...playCards.slice(4, 5),
-      ...playCards.slice(3 + 13, 4 + 13),
-      ...playCards.slice(2, 3),
-      ...playCards.slice(1 + 13, 2 + 13),
-      ...playCards.slice(0, 1),
+      playCards[11 + 13 - 1],
+      playCards[9 - 1],
+      playCards[3 + 13 + 13 + 13 - 1],
+      playCards[5 + 13 + 13 - 1],
+      playCards[2 - 1],
+      playCards[5 - 1],
+      playCards[13 - 1],
     ];
     const third = [
-      ...playCards.slice(6 + 13, 7 + 13),
-      ...playCards.slice(5, 6),
-      ...playCards.slice(4, 5),
-      ...playCards.slice(3 + 13, 4 + 13),
-      ...playCards.slice(2, 3),
-      ...playCards.slice(1 + 13, 2 + 13),
-      ...playCards.slice(0, 1),
+      playCards[9 + 13 - 1],
+      playCards[5 + 13 + 13 + 13 - 1],
+      playCards[2 + 13 + 13 + 13 - 1],
+      playCards[13 + 13 + 13 + 13 - 1],
+      playCards[7 + 13 + 13 - 1],
+      playCards[6 + 13 + 13 + 13 - 1],
+      playCards[3 + 13 - 1],
     ];
     const fourth = [
-      ...playCards.slice(6, 7),
-      ...playCards.slice(5 + 13 + 13, 6 + 13 + 13),
-      ...playCards.slice(4 + 13 + 13, 5 + 13 + 13),
-      ...playCards.slice(3, 4),
-      ...playCards.slice(2 + 13 + 13, 3 + 13 + 13),
-      ...playCards.slice(1, 2),
-      ...playCards.slice(0 + 13 + 13, 1 + 13 + 13),
+      playCards[10 + 13 + 13 - 1],
+      playCards[9 + 13 + 13 + 13 - 1],
+      playCards[12 + 13 - 1],
+      playCards[12 + 13 + 13 + 13 - 1],
+      playCards[1 + 13 + 13 + 13 - 1],
+      playCards[4 + 13 + 13 + 13 - 1],
+      playCards[1 - 1],
     ];
-    const fifth = playCards.slice(0 + 13 + 13 + 13, 1 + 13 + 13 + 13);
-    const sixth = playCards.slice(0, 0);
-    const seventh = playCards.slice(0, 0);
-    const eighth = playCards.slice(0, 0);
+    const fifth = [
+      playCards[1 + 13 + 13 - 1],
+      playCards[11 + 13 + 13 - 1],
+      playCards[8 + 13 + 13 + 13 - 1],
+      playCards[3 - 1],
+      playCards[8 + 13 - 1],
+      playCards[11 + 13 + 13 + 13 - 1],
+    ];
+    const sixth = [
+      playCards[6 + 13 + 13 - 1],
+      playCards[4 - 1],
+      playCards[8 + 13 + 13 - 1],
+      playCards[10 - 1],
+      playCards[12 + 13 + 13 - 1],
+      playCards[4 + 13 - 1],
+    ];
+    const seventh = [
+      playCards[8 - 1],
+      playCards[7 + 13 + 13 + 13 - 1],
+      playCards[10 + 13 - 1],
+      playCards[11 - 1],
+      playCards[10 + 13 + 13 + 13 - 1],
+      playCards[9 + 13 + 13 - 1],
+    ];
+    const eighth = [
+      playCards[4 + 13 + 13 - 1],
+      playCards[6 + 13 - 1],
+      playCards[1 + 13 - 1],
+      playCards[13 + 13 - 1],
+      playCards[5 + 13 - 1],
+      playCards[12 - 1],
+    ];
 
     dispatch(fillCardCascades({
       first,

@@ -104,11 +104,21 @@ const reducer = (state = initState, action: FreeCellActionTypes): FreeCell => {
   switch (action.type) {
     case FILLCARDCASCADES:
       return {
-        emptyCells: state.emptyCells,
+        emptyCells: {
+          first: [],
+          second: [],
+          third: [],
+          fourth: [],
+        },
         cardCascades: {
           ...action.payload.cardCascades,
         },
-        foundations: state.foundations,
+        foundations: {
+          first: [],
+          second: [],
+          third: [],
+          fourth: [],
+        },
       };
     case CHANGECASCADEFIELDNAME:
       return {

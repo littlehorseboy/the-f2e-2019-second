@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 const suitsCheck = (first: string, second: string): boolean => (first === 'spade' && second === 'spade')
     || (first === 'club' && second === 'club')
     || (first === 'heart' && second === 'heart')
-    || (first === 'spade' && second === 'spade');
+    || (first === 'diamond' && second === 'diamond');
 
 interface Props {
   foundationName: string;
