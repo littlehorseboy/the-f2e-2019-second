@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import EmptyCellAndFoundations from '../../components/EmptyCellAndFoundations/EmptyCellAndFoundations';
 import CardCascade from '../../components/CardCascade/CardCascade';
+import ScoreText from '../../components/ScoreText/ScoreText';
 
 const taiwanImg = require('../../assets/images/icons/taiwan.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
 const KImg = require('../../assets/images/spade13.svg'); // eslint-disable-line @typescript-eslint/no-var-requires
@@ -141,9 +142,7 @@ export default function Main(): JSX.Element {
               Restart
             </Button>
           </div>
-          <div className={classes.scoreText}>
-            Score: 120
-          </div>
+          <ScoreText />
           <div>
             <Button variant="outlined" color="primary" className={classes.button}>
               <SvgIcon viewBox="0 0 512 512">

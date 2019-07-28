@@ -1,6 +1,5 @@
 const pathToCard = require.context('../../assets/images', false, /\.svg$/);
 
-
 export interface PlayCard {
   suits: string;
   number: number;

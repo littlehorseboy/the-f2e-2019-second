@@ -45,8 +45,6 @@ export interface FreeCell {
   };
 }
 
-// 遞迴取第一個 遞迴往前算 canDrag
-
 const initState: FreeCell = {
   // 空白區: 4 張的位置自由擺放牌組，影響遊戲區拖放數量
   emptyCells: {
