@@ -20,7 +20,9 @@ const useStyles = makeStyles({
     },
   },
   emptyCard: {
-    backgroundColor: '#C9C9C9',
+    backgroundColor: 'transparent',
+    border: '2px solid #4C653C',
+    borderRadius: 6,
     height: 145.5,
   },
 });
@@ -85,7 +87,7 @@ export default function CardWall(props: Props): JSX.Element {
       <div className={classes.cardWallWrapper}>
         {props.children}
 
-        {isOver && canDrop && <div className={classes.emptyCard}>可以放</div>}
+        {isOver && canDrop && <div className={classes.emptyCard}></div>}
       </div>
     </div>
   );
